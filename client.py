@@ -92,7 +92,7 @@ while True:
         screen.blit(text, text_rect)
 
         display.update()
-        continue  # Блокує гру після перемогиj
+        continue  # Блокує гру після перемоги
 
     if game_state:
         screen.fill((30, 30, 30))
