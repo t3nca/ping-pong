@@ -43,7 +43,12 @@ font_main = font.Font(None, 36)
 # --- ЗОБРАЖЕННЯ ----
 
 # --- ЗВУКИ ---
+mixer.music.load("sound/background_music.ogg") #Завантаження музики з папки
+mixer.music.set_volume(0.05) #Встановлення гучності музики
+mixer.music.play(-1) # Зациклення композиції
 
+
+HIT_SOUND = mixer.Sound("sound/paddle_hit.wav")
 # --- ГРА ---
 game_over = False
 winner = None
@@ -111,7 +116,18 @@ while True:
     clock.tick(60)
 
     keys = key.get_pressed()
-    if keys[K_w]:
+    if keys[K_w] or keys[K_UP]:
         client.send(b"UP")
-    elif keys[K_s]:
+    elif keys[K_s] or keys[K_DOWN]:
         client.send(b"DOWN")
+    else:
+        pass
+
+    if game_state['sound_event']:
+        if game_state['sound_event'] == 'wall_hit':
+            # звук відбиття м'ячика від стін
+            pass
+        if game_state['sound_event'] == 'platform_hit':
+            HIT_SOUND.play()  # було змінено цей рядок
+            pass
+
