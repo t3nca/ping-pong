@@ -50,6 +50,7 @@ mixer.music.play(-1) # Зациклення композиції
 
 HIT_SOUND = mixer.Sound("sound/paddle_hit.wav")
 bounce_sounds = mixer.Sound("sound/wall_hit.wav")
+win_sound = mixer.Sound("sound/win.wav")
 # --- ГРА ---
 game_over = False
 winner = None
@@ -74,7 +75,10 @@ while True:
         if you_winner is None:  # Встановлюємо тільки один раз
             if game_state["winner"] == my_id:
                 you_winner = True
-                #звук
+                if game_state['sound_event']:
+                    if game_state['sound_event'] == 'winner':
+                        win_sound.play()
+                        pass
             else:
                 you_winner = False
 
